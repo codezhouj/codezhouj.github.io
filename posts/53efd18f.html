@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/posts/53efd18f/1.png">
 <meta property="og:image" content="http://yoursite.com/posts/53efd18f/2.png">
 <meta property="article:published_time" content="2020-02-19T07:59:07.000Z">
-<meta property="article:modified_time" content="2020-02-26T01:07:00.683Z">
+<meta property="article:modified_time" content="2020-02-26T04:48:05.037Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -39,6 +39,23 @@
   
 
   
+
+  
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+    
 
 <meta name="generator" content="Hexo 4.2.0"></head>
 
@@ -209,7 +226,7 @@ import com.jiangli.test1.Hello;
 
 public class Student{
     public static void main(String[] args){
-        Hello.say()
+        Hello.say();
     }
 }</code></pre><p>编译器看到import关键字时，就知道你要引入com.jiangli.test1这个package中的类，此时编译器就会根据你classpath变量中配的值来查找，当编译器面对import com.jiangli.test1这个语句时，它先会查找classpath变量下配置的目录，并检视子目录com/jiangli/test1是否存在，然后找出类名对应的.class文件。如果没有找到就会报错！比如我这个类放在了bin\com\jiangli\test1,就得配置对应的classpath变量，否则会编译报错  </p>
 <p><img src="/posts/53efd18f/1.png" alt="图片"> </p>
