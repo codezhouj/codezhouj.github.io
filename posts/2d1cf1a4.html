@@ -17,8 +17,18 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/1.png">
 <meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/2.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/4.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/7.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/8.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/5.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/3.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/6.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/9.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/10.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/11.png">
+<meta property="og:image" content="http://yoursite.com/posts/2d1cf1a4/12.png">
 <meta property="article:published_time" content="2020-02-21T05:16:40.000Z">
-<meta property="article:modified_time" content="2020-02-26T10:49:51.286Z">
+<meta property="article:modified_time" content="2020-02-27T04:03:16.728Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -205,15 +215,86 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="关于jar包"><a href="#关于jar包" class="headerlink" title="关于jar包"></a>关于jar包</h1><a id="more"></a>
-<h2 id="jar包是什么"><a href="#jar包是什么" class="headerlink" title="jar包是什么"></a>jar包是什么</h2><p>jar包本质上也是一个压缩文件，我们可以使用解压缩软件直接把一个jar包打开，jar包里压缩的一般都是一些已经编译好的java程序，我们可以把这些jar包添加进自己的项目中，调用jar包中的类和方法。使用jar命令就可以对一个.class文件打包成一个jar包，jar包里除了有class文件，还有对这个jar的描述性文件（<em>MANIFEST.MF*），默认情况下，这个jar包是不能执行的，当然，我们可以对 *MANIFEST.MF</em> 文件进行修改，把它变成一个可执行的jar包  </p>
+<h2 id="jar包是什么"><a href="#jar包是什么" class="headerlink" title="jar包是什么"></a>jar包是什么</h2><p>jar包本质上也是一个压缩文件，我们可以使用解压缩软件直接把一个jar包打开，jar包里压缩的一般都是一些已经编译好的java程序，我们可以把这些jar包添加进自己的项目中，调用jar包中的类和方法。jar包里除了有class文件，还有对这个jar的描述性文件     （<em>MANIFEST.MF*），默认情况下，这个jar包是不能执行的，当然，我们可以对 *MANIFEST.MF</em> 文件进行修改，把它变成一个可执行的jar包  </p>
 <blockquote>
-<p>随便打开我们电脑中的一个jar包，可看到<br><img src="/posts/2d1cf1a4/1.png" alt="图片"><br><img src="/posts/2d1cf1a4/2.png" alt="图片"> </p>
+<p>随便打开我们电脑中的一个jar包，可看到  <em>MANIFEST.MF</em>文件</p>
 </blockquote>
-<h2 id="jar包的打包方式（cmd窗口下）"><a href="#jar包的打包方式（cmd窗口下）" class="headerlink" title="jar包的打包方式（cmd窗口下）"></a>jar包的打包方式（cmd窗口下）</h2><p>比如我们在当前目录下把<strong>HelloWorld.class</strong>打包到<strong>hello.jar</strong>这个jar包中 </p>
+<p><img src="/posts/2d1cf1a4/1.png" alt="图片"><br><img src="/posts/2d1cf1a4/2.png" alt="图片"> </p>
+<h2 id="jar包的打包方式（cmd窗口下）"><a href="#jar包的打包方式（cmd窗口下）" class="headerlink" title="jar包的打包方式（cmd窗口下）"></a>jar包的打包方式（cmd窗口下）</h2><p>1.使用jar命令就可以把一个.class文件打包成一个jar包。比如我们在当前目录下把<strong>HelloWorld.class</strong>打包到<strong>hello.jar</strong>这个jar包中 ,先编写一个HelloWorld.java文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后将生成的class文件打成jar包</p>
 <blockquote>
-<p>jar -cvf hello.jar HelloWorld.class</p>
+<p>jar -cvf hello.jar HelloWorld.class  </p>
 </blockquote>
-<h2 id="把jar包变成可执行jar包"><a href="#把jar包变成可执行jar包" class="headerlink" title="把jar包变成可执行jar包"></a>把jar包变成可执行jar包</h2>
+<p><img src="/posts/2d1cf1a4/4.png" alt="图片">  </p>
+<p>2.如果我们当前目录下有多个class文件，我们怎么把这些class文件都打包到hello.jar中呢？如下命令—&gt; </p>
+<blockquote>
+<p>jar -cvf hello.jar *.class </p>
+</blockquote>
+<p>3.若我们编写的是一个带包的类，代码样例如下</p>
+<pre><code class="java"><span class="keyword">package</span> china.jiangxi.test;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{
+        System.out.println(<span class="string">"Hello World!"</span>);
+    }
+}</code></pre>
+<p>3.1 如何编译并执行一个带包的java文件呢？ </p>
+<blockquote>
+<p>javac -d  . HelloWorld.java<br>java china.jiangxi.test.HelloWorld  </p>
+</blockquote>
+<p><strong>-d</strong> 表示指定放置生成的类文件的位置，<strong>.</strong> 表示当前目录（注意两边都有空格），第一条命令的意思为把HelloWorld.java编译后的文件放在放在当前目录下，我们可以看到，test目录下生成了china文件夹</p>
+<p><img src="/posts/2d1cf1a4/7.png" alt="图片"><br><img src="/posts/2d1cf1a4/8.png" alt="图片">  </p>
+<p>3.2 打成jar包<br>把当前目录下的china文件夹里面的所有文件打到这个jar包中，同时<strong>包含</strong>china目录本身  </p>
+<blockquote>
+<p>jar -cvf hello.jar china  </p>
+</blockquote>
+<p>把当前目录下的china文件夹里面的所有文件打到这个jar包中，但是<strong>不包含</strong>china目录本身  </p>
+<blockquote>
+<p>jar -cvf hello.jar -C china .</p>
+</blockquote>
+<h2 id="把jar包变成可执行jar包"><a href="#把jar包变成可执行jar包" class="headerlink" title="把jar包变成可执行jar包"></a>把jar包变成可执行jar包</h2><p>修改方式：在MF文件中添加一行内容，<strong>Main-Class: 包名.类名</strong>  (类中无包名则直接加类名)   </p>
+<p><img src="/posts/2d1cf1a4/5.png" alt="图片"><br><img src="/posts/2d1cf1a4/3.png" alt="图片">    </p>
+<p><strong>注意</strong> ：<strong>冒号要是英文输入法下的冒号，且后面要加空格。最后还要留一行空行！</strong> 然后保存。我们在cmd窗口的当前目录下输入命令运行 </p>
+<blockquote>
+<p>java -jar hello.jar   </p>
+</blockquote>
+<p><img src="/posts/2d1cf1a4/6.png" alt="图片">   </p>
+<p>若jar包中的类是一个带包编译的class文件，如上面带package的示例，此时应如何修改<em>MANIFEST.MF</em>文件使之变成一个可执行的jar包呢？  如下图所示 </p>
+<p><img src="/posts/2d1cf1a4/9.png" alt="图片">  </p>
+<p>修改后保存，运行，可看到能成功运行 </p>
+<p><img src="/posts/2d1cf1a4/10.png" alt="图片"> </p>
+<h2 id="一个jar包中引用了另一个jar包中的类或方法"><a href="#一个jar包中引用了另一个jar包中的类或方法" class="headerlink" title="一个jar包中引用了另一个jar包中的类或方法"></a>一个jar包中引用了另一个jar包中的类或方法</h2><p>我们修改一下上面的HelloWorld类并增加一个Person类，示例如下： </p>
+<blockquote>
+<p>HelloWorld类</p>
+</blockquote>
+<pre><code class="java"><span class="keyword">package</span> china.jiangxi.test;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{
+        HelloWorld.say();
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>{
+        System.out.println(<span class="string">"Hello World!"</span>);
+    }
+}</code></pre>
+<blockquote>
+<p>Person类</p>
+</blockquote>
+<pre><code class="java"><span class="keyword">package</span> china.jiangxi.test2;
+
+<span class="keyword">import</span> china.jiangxi.test.HelloWorld;   <span class="comment">//引用了HelloWorld类中的方法，故需要import导入</span>
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{
+        HelloWorld.say();        <span class="comment">//调用HelloWorld类中的方法</span>
+    }
+}</code></pre>
+<p>我们可以看到，Person类中调用了HelloWorld类中的方法，编译运行。把Person.class    打包在person.jar中，把Hello.class打包在hello.jar中，此时这么更改person.jar中的<em>MANIFEST.MF</em>文件 。<strong>注意冒号后的空格和最后一行要留一行！</strong></p>
+<p><img src="/posts/2d1cf1a4/11.png" alt="图片">  </p>
+<p>运行person.jar，成功运行<br><img src="/posts/2d1cf1a4/12.png" alt="图片"> </p>
+
       
 
       
@@ -355,7 +436,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关于jar包"><span class="toc-number">1.</span> <span class="toc-text">关于jar包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jar包是什么"><span class="toc-number">1.1.</span> <span class="toc-text">jar包是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jar包的打包方式（cmd窗口下）"><span class="toc-number">1.2.</span> <span class="toc-text">jar包的打包方式（cmd窗口下）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把jar包变成可执行jar包"><span class="toc-number">1.3.</span> <span class="toc-text">把jar包变成可执行jar包</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关于jar包"><span class="toc-number">1.</span> <span class="toc-text">关于jar包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jar包是什么"><span class="toc-number">1.1.</span> <span class="toc-text">jar包是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jar包的打包方式（cmd窗口下）"><span class="toc-number">1.2.</span> <span class="toc-text">jar包的打包方式（cmd窗口下）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把jar包变成可执行jar包"><span class="toc-number">1.3.</span> <span class="toc-text">把jar包变成可执行jar包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个jar包中引用了另一个jar包中的类或方法"><span class="toc-number">1.4.</span> <span class="toc-text">一个jar包中引用了另一个jar包中的类或方法</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

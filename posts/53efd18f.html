@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/posts/53efd18f/1.png">
 <meta property="og:image" content="http://yoursite.com/posts/53efd18f/2.png">
 <meta property="article:published_time" content="2020-02-19T07:59:07.000Z">
-<meta property="article:modified_time" content="2020-02-26T08:44:38.086Z">
+<meta property="article:modified_time" content="2020-02-27T02:02:13.934Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -217,18 +217,19 @@
 <blockquote>
 <p>类1 </p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package com.jiangli.test1;</span><br><span class="line">public class Hello&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Hello.say();</span><br><span class="line">	&#125; </span><br><span class="line">	public static void say()&#123;</span><br><span class="line">		System.out.println(&quot;Hello World!&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.jiangli.test1;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Hello.say();</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>类2</p>
 </blockquote>
-<pre><code>package com.jiangli.test2;
-import com.jiangli.test1.Hello;
+<pre><code class="java"><span class="keyword">package</span> com.jiangli.test2;
+<span class="keyword">import</span> com.jiangli.test1.Hello;
 
-public class Student{
-    public static void main(String[] args){
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{
         Hello.say();
     }
-}</code></pre><p>编译器看到<em>import<em>关键字时，就知道你要引入</em>com.jiangli.test1<em>这个package中的类，此时编译器就会根据你classpath变量中配的值来查找，当编译器面对</em>import com.jiangli.test1<em>这个语句时，它先会查找classpath变量下配置的目录，并检视子目录</em>com/jiangli/test1<em>是否存在，然后找出类名对应的.class文件。如果没有找到就会报错！比如我这个类放在了</em>bin/com/jiangli/test1</em>,就得配置对应的classpath变量，否则会编译报错  </p>
+}</code></pre>
+<p>编译器看到<em>import<em>关键字时，就知道你要引入</em>com.jiangli.test1<em>这个package中的类，此时编译器就会根据你classpath变量中配的值来查找，当编译器面对</em>import com.jiangli.test1<em>这个语句时，它先会查找classpath变量下配置的目录，并检视子目录</em>com/jiangli/test1<em>是否存在，然后找出类名对应的.class文件。如果没有找到就会报错！比如我这个类放在了</em>bin/com/jiangli/test1</em>,就得配置对应的classpath变量，否则会编译报错  </p>
 <p><img src="/posts/53efd18f/1.png" alt="图片"> </p>
 <p>故我们要设置classpath变量的值  </p>
 <blockquote>
