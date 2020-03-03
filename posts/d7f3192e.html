@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 随笔 | Hexo</title>
+  <title>java学习笔记(七) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/index.html">
+  <meta name="description" content="类型转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记(七)">
+<meta property="og:url" content="http://yoursite.com/posts/d7f3192e.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="类型转换">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/posts/d7f3192e/1.png">
+<meta property="article:published_time" content="2020-03-03T10:37:03.000Z">
+<meta property="article:modified_time" content="2020-03-03T14:10:16.272Z">
 <meta property="article:author" content="zhoujin">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/posts/d7f3192e/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -184,35 +189,80 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-java学习笔记-七" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/5b3f9b02.html" class="archive-article-date">
-  	<time datetime="2020-03-03T13:17:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/5b3f9b02.html">逻辑运算操作符</a>
+    <h1 class="article-title" itemprop="name">
+      java学习笔记(七)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/posts/d7f3192e.html" class="archive-article-date">
+  	<time datetime="2020-03-03T10:37:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><a id="more"></a>
+<h2 id="基本类型之间的转换"><a href="#基本类型之间的转换" class="headerlink" title="基本类型之间的转换"></a>基本类型之间的转换</h2><h3 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h3><p>也是自动转换，在JVM运行期间，只要满足条件，就可以自动完成类型转换的过程。一般是数据范围比较小的会自动转换成数据范围较大的类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> a = <span class="number">1</span>;   <span class="comment">//byte为8位</span></span><br><span class="line"><span class="keyword">int</span> b = a;    </span><br><span class="line"></span><br><span class="line"><span class="comment">//int为32位，将数据范围小的数据赋值给数据范围大的基本类型变量，会自动转换。即低精度会自动转为高精度</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="显示转换"><a href="#显示转换" class="headerlink" title="显示转换"></a>显示转换</h3><p>也是手动转换或者强制转换。编译器发现类型无法自动转换的情况，就会编译报错，当我们确认无误后，就可以进行类型强制转换，但这样会存在一定风险的，运行这个类型转换的代码时，可能会抛出类型转换异常。<br>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = a; g</span><br></pre></td></tr></table></figure>
+<p>此时会编译报错，因为a时int型，而b是byte类型，把一个大范围的数据，赋值给一个范围小的变量是不允许的，这种情况编译器不会自动进行类型转换的，因为可能会造成精度损失，只能我们自己手动进行强制类型转换 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">byte</span>)a; <span class="comment">//强制转换为byte类型</span></span><br></pre></td></tr></table></figure>
+<p>对于基本类型，强制转换的过程就是把多余的高位抹去，这样可能会对数据的造成影响。<br>比如： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1000</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">byte</span>)a</span><br></pre></td></tr></table></figure>
+<p>此时，变量a的值已经超过了byte所能表示的最大范围，我们看下输出结果  </p>
+<p><img src="/posts/d7f3192e/1.png" alt="图片"></p>
+<p>我们可以顺便分析一下为什么结果是-24。首先1000对应的二进制编码是0011 1110 1000‬（前面24个0省略没写出来），byte类型为8位，int类型强制转为byte类型，高28位被截断，此时变量b在机器中的二进制就变成了11101000，因为整型变量在机器中是以补码的形式存在的，故对应的原码真值就是-24</p>
+<p><strong>注意：若将基本类型中的浮点型强制转换为整型，那么浮点型数据的小数部分会直接抹去。</strong></p>
+<h2 id="引用类型之间的转换"><a href="#引用类型之间的转换" class="headerlink" title="引用类型之间的转换"></a>引用类型之间的转换</h2><h3 id="隐式转换-1"><a href="#隐式转换-1" class="headerlink" title="隐式转换"></a>隐式转换</h3><p>例如(假设已经定义了一个Student类):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student s = <span class="keyword">new</span>  Student();</span><br><span class="line">Object o = s;</span><br></pre></td></tr></table></figure>
+<p>子类类型的变量会自动转成父类，Object是父类型，Student是子类型。虽然是引用类型之间的类型转换，但是和基本类型之间的转换还是保持一个规则，即=右边小范围的类型数据，会自动转为=左边大范围类型的数据。</p>
+<h3 id="显示转换-1"><a href="#显示转换-1" class="headerlink" title="显示转换"></a>显示转换</h3><p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Student(); <span class="comment">//这里存在隐式转换</span></span><br><span class="line">Student s = o;</span><br></pre></td></tr></table></figure>
+<p>这样是不能编译通过的，<strong>o</strong>是父类型的变量，而变量<strong>s</strong>是子类型的变量，此时必须进行强制类型转换,第二条语句应改为 <strong>Student s = (Student)o;</strong>。编译时，能否让这种类型转换的代码通过，编译器看的是其=号两边的类型是否一致，或者有没有类似子父类的关系，例如刚刚修改过的代码，这条语句编译时，编译器看的变量<strong>o</strong>是Object类型，而变量<strong>s</strong>的类型的Student类型，这两个类型是有子父类关系的，故能编译通过。但是在运行过程中，JVM能否成功执行这句代码，看的是变量<strong>o</strong>在运行时，<strong>o</strong>所指的对象具体是什么类型的，如果<strong>o</strong>所指的类型是Student或者Student类型的子类型，，那么这句代码可成功执行，否则会报类型转换异常的错误。   </p>
+<p>我们在做类型转换的时候，可以使用<strong>instanceof</strong>关键字进行判断，看引用<strong>o</strong>是否可以转成Student类型,避免发生类型转换异常的错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="keyword">if</span>(o <span class="keyword">instanceof</span> Student)&#123;</span><br><span class="line">    Student s = (Student)o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类型转换的特点"><a href="#类型转换的特点" class="headerlink" title="类型转换的特点"></a>类型转换的特点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引用类型强制转换</span></span><br><span class="line">Object o = <span class="keyword">new</span> Student();</span><br><span class="line">Student s = (Student)o;</span><br><span class="line"></span><br><span class="line"><span class="comment">//基本数据类型强制转换</span></span><br><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">int</span>)a;</span><br></pre></td></tr></table></figure>
+<p>这样转换之后，不管是o变量还是a变量，强制转换后的类型是不变的，只是把原变量强制转换后的结果赋给另一个变量，这个转换对变量a本身没有任何影响，只是在计算机的内存中使用一下变量a的值，a变量依然是int类型，而不会变成byte类型。引用类型的强制转换也是如此。java中的变量类型一旦声明，是不会改变的，直到变量在内存中被释放为止</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -220,65 +270,132 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://codezhouj.github.io/http://yoursite.com/posts/d7f3192e.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/11065867.html" class="archive-article-date">
-  	<time datetime="2020-02-01T04:46:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-01</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/posts/5b3f9b02.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          逻辑运算操作符
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/48fb01a4.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java学习笔记(六)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/11065867.html">一名菜鸟的自述</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类型转换"><span class="toc-number">1.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型之间的转换"><span class="toc-number">1.1.</span> <span class="toc-text">基本类型之间的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式转换"><span class="toc-number">1.1.1.</span> <span class="toc-text">隐式转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示转换"><span class="toc-number">1.1.2.</span> <span class="toc-text">显示转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用类型之间的转换"><span class="toc-number">1.2.</span> <span class="toc-text">引用类型之间的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式转换-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">隐式转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示转换-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">显示转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换的特点"><span class="toc-number">1.3.</span> <span class="toc-text">类型转换的特点</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -301,9 +418,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
