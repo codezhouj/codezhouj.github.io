@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java学习笔记Basic(十一) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java的三大特性面向对象编程（Object-Oriented-Programming）">
+  <meta name="description" content="初步认识java的三大特性面向对象编程（Object-Oriented-Programming）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java学习笔记Basic(十一)">
 <meta property="og:url" content="http://yoursite.com/posts/cc7def0f.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="java的三大特性面向对象编程（Object-Oriented-Programming）">
+<meta property="og:description" content="初步认识java的三大特性面向对象编程（Object-Oriented-Programming）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-10T02:03:07.000Z">
-<meta property="article:modified_time" content="2020-03-11T12:48:43.218Z">
+<meta property="article:modified_time" content="2020-03-12T01:26:09.107Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -207,9 +207,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="java的三大特性"><a href="#java的三大特性" class="headerlink" title="java的三大特性"></a>java的三大特性</h1><p>面向对象编程（Object-Oriented-Programming）   </p>
+        <h1 id="初步认识java的三大特性"><a href="#初步认识java的三大特性" class="headerlink" title="初步认识java的三大特性"></a>初步认识java的三大特性</h1><p>面向对象编程（Object-Oriented-Programming）   </p>
 <a id="more"></a> 
-<p>类是一种抽象的数据结构，数据类型本身就是抽象的，它就是用来对特定的数据进行描述或者定义的。表达的意思就是，只要满足这种情况或者条件的数据，就属于这一种数据类型。<br>例如：int 这种数据类型，它定义了一种数据结构的特点，在内存中占32位的空间，表示一个整型数据。那么只要是满足这个条件的数据，就是int类型的数据。所以int本身是不能使用的，我们只是用int来描述/定义符合特定条件的这么一类数据应该具备什么条件。<br>那么Student类，它的含义和int类型是相似的。Student类就是用来定义/描述表示学生这种数据应具备什么特点（属性/方法）。Student类也是不能直接使用的，我们可以使用Student声明出这个类型的变量，或者创建出这个类型的对象，这个对象才是我们真正表示学生的数据，用其来访问类中的属性和方法。</p>
+<p>类是一种抽象的数据结构，数据类型本身就是抽象的，它就是用来对特定的数据进行描述或者定义的。表达的意思就是，只要满足这种情况或者条件的数据，就属于这一种数据类型。  </p>
+<p>例如：int 这种数据类型，它定义了一种数据结构的特点，在内存中占32位的空间，表示一个整型数据。那么只要是满足这个条件的数据，就是int类型的数据。所以int本身是不能使用的，我们只是用int来描述/定义符合特定条件的这么一类数据应该具备什么条件。  </p>
+<p>那么Student类，它的含义和int类型是相似的。Student类就是用来定义/描述表示学生这种数据应具备什么特点（属性/方法）。Student类也是不能直接使用的，我们可以使用Student声明出这个类型的变量，或者创建出这个类型的对象，这个对象才是我们真正表示学生的数据，用其来访问类中的属性和方法。</p>
 <h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p>使用面向对象编程语言的程序员，必须要具备的一种能力。对一件事物，保留我们关心的部分，去除我们不关心的其他部分。<br>我们思考这么一个问题，java中的类是怎么来呢？    </p>
 <blockquote>
 <p>客户—&gt;提出需求—&gt;根据需求分析—&gt;抽象—&gt;类—&gt;实例化—&gt;对象—&gt;访问属性/方法—&gt;调用—&gt;执行代码—&gt;完成功能—&gt;满足用户需求</p>
@@ -219,7 +221,7 @@
 <li>对代码中方法的封装  </li>
 </ul>
 <p>例如我们在编写一个类的时候，其实就是把这个类相关的属性和方法封装起来。我们在编写一个类的时候，可以把一些属性封装到类中，也可以把一些功能实现的一行行代码细节封装到类的方法中，那么这个类中的属性和方法就可对外提供调用，在其他地方可以使用类的对象调用到这个类的属性和方法，完成代码的执行以及功能的实现。</p>
-<h2 id="二-继承Inheritance"><a href="#二-继承Inheritance" class="headerlink" title="二 继承Inheritance"></a>二 继承Inheritance</h2><p><strong>继承</strong>是java中类和类之间的一种关系，类和类之间的关系有很多种，继承只是其中的一种关系。一个子类可以继承一个父类，那么子类就可以把父类中的属性和方法都继承过来。这样子类就拥有从父类继承过来的东西。<br>例如：java中的每个对象都可以调用toString、getClass、equals、hashCode等方法，这是因为这些方法是从父类<strong>Object</strong>中继承过来的。所以继承也</p>
+<h2 id="二-继承Inheritance"><a href="#二-继承Inheritance" class="headerlink" title="二 继承Inheritance"></a>二 继承Inheritance</h2><p><strong>继承</strong>是java中类和类之间的一种关系，类和类之间的关系有很多种，继承只是其中的一种关系。一个子类可以继承一个父类，那么子类就可以把父类中的属性和方法都继承过来。这样子类就拥有从父类继承过来的东西。<br>例如：java中的每个对象都可以调用toString、getClass、equals、hashCode等方法，这是因为这些方法是从父类<strong>Object</strong>中继承过来的。所以继承也所以继承也是支持java代码重用的一种表现形式。</p>
 <h2 id="三-多态Polymor"><a href="#三-多态Polymor" class="headerlink" title="三 多态Polymor"></a>三 多态Polymor</h2><p>在代码运行期间，一个父类型的变量，可以指向任何一个子类型对象，当我们使用这个变量去调用方法时，JVM在执行的时候会根据这个变量所指向的对象的不同，分别去执行当前所指向对象中的方法，最终的结果可能是不同的。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Person p;</span><br><span class="line"></span><br><span class="line">p = <span class="keyword">new</span> Student();</span><br><span class="line">p.run(); <span class="comment">//输出Student run</span></span><br><span class="line"></span><br><span class="line">p = <span class="keyword">new</span> Teacher();</span><br><span class="line">p.run(); <span class="comment">//输出Teacher run</span></span><br></pre></td></tr></table></figure>
 
@@ -307,6 +309,15 @@
   
 <nav id="article-nav">
   
+    <a href="/posts/f7e4bfd9.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Basic--关于Java中的方法
+        
+      </div>
+    </a>
+  
   
     <a href="/posts/735e5788.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">排序算法</div>
@@ -336,7 +347,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java的三大特性"><span class="toc-number">1.</span> <span class="toc-text">java的三大特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象"><span class="toc-number">1.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一-封装Encapsulation"><span class="toc-number">1.2.</span> <span class="toc-text">一 封装Encapsulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-继承Inheritance"><span class="toc-number">1.3.</span> <span class="toc-text">二 继承Inheritance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-多态Polymor"><span class="toc-number">1.4.</span> <span class="toc-text">三 多态Polymor</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#初步认识java的三大特性"><span class="toc-number">1.</span> <span class="toc-text">初步认识java的三大特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象"><span class="toc-number">1.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一-封装Encapsulation"><span class="toc-number">1.2.</span> <span class="toc-text">一 封装Encapsulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-继承Inheritance"><span class="toc-number">1.3.</span> <span class="toc-text">二 继承Inheritance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-多态Polymor"><span class="toc-number">1.4.</span> <span class="toc-text">三 多态Polymor</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
