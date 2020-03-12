@@ -16,7 +16,7 @@
 <meta property="og:description" content="方法的定义与调用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-11T00:57:32.000Z">
-<meta property="article:modified_time" content="2020-03-12T10:30:13.348Z">
+<meta property="article:modified_time" content="2020-03-12T10:34:10.170Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -207,8 +207,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>方法的定义与调用</p>
-<a id="more"></a>
+        <h1 id="方法的定义与调用"><a href="#方法的定义与调用" class="headerlink" title="方法的定义与调用"></a>方法的定义与调用</h1><a id="more"></a>
 <h2 id="方法的定义"><a href="#方法的定义" class="headerlink" title="方法的定义"></a>方法的定义</h2><p>方法一定要定义在类中，属于类的成员，所以也可以叫做成员方法。</p>
 <pre><code>定义方法的格式：
 
@@ -255,14 +254,14 @@ static public void main(String[] args){}</code></pre><p>方法上也可以不写
         throw new RuntimeException(&quot;异常信息&quot;);
     }
 
-}</code></pre><p>特殊的情况：这里的修饰符、参数类别、抛出的异常类型都是可以不写的。</p>
+}</code></pre><p>特殊的情况：<br>这里的修饰符、参数类别、抛出的异常类型都是可以不写的。</p>
 <pre><code>例如：
     //编译通过
     public class Student{
         void test(){
 
         }
-    }</code></pre><p>如果把返回类型也省去不写：注意，只有构造器才可以不写返回类型，同时构造器的名字需要和类的名字一致。</p>
+    }</code></pre><p>如果把返回类型也省去不写：<br>注意，只有构造器才可以不写返回类型，同时构造器的名字需要和类的名字一致。</p>
 <pre><code>//编译通过
 public class Student{
     //这就不是一个普通的方法了，它是一个构造器
@@ -431,7 +430,7 @@ main:
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法的定义"><span class="toc-number">1.</span> <span class="toc-text">方法的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法的调用"><span class="toc-number">2.</span> <span class="toc-text">方法的调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类中方法之间的调用"><span class="toc-number">2.1.</span> <span class="toc-text">类中方法之间的调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法的递归调用"><span class="toc-number">3.</span> <span class="toc-text">方法的递归调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数传递"><span class="toc-number">4.</span> <span class="toc-text">参数传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#值传递"><span class="toc-number">4.1.</span> <span class="toc-text">值传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用传递"><span class="toc-number">4.2.</span> <span class="toc-text">引用传递</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#方法的定义与调用"><span class="toc-number">1.</span> <span class="toc-text">方法的定义与调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法的定义"><span class="toc-number">1.1.</span> <span class="toc-text">方法的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法的调用"><span class="toc-number">1.2.</span> <span class="toc-text">方法的调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类中方法之间的调用"><span class="toc-number">1.2.1.</span> <span class="toc-text">类中方法之间的调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法的递归调用"><span class="toc-number">1.3.</span> <span class="toc-text">方法的递归调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数传递"><span class="toc-number">1.4.</span> <span class="toc-text">参数传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#值传递"><span class="toc-number">1.4.1.</span> <span class="toc-text">值传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用传递"><span class="toc-number">1.4.2.</span> <span class="toc-text">引用传递</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
