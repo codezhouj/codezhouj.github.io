@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/posts/634c746d/1.png">
 <meta property="article:published_time" content="2020-03-12T06:19:49.000Z">
-<meta property="article:modified_time" content="2020-03-12T10:49:35.404Z">
+<meta property="article:modified_time" content="2020-03-13T03:05:27.138Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -210,6 +210,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><a id="more"></a>
+
 <h2 id="this关键字的意义"><a href="#this关键字的意义" class="headerlink" title="this关键字的意义"></a>this关键字的意义</h2><p>在编写类的过程中，代码中使用了this，这个this就表示当前这个类【将来】创建出的那个对象，并且使用这个对象调用了this所在的方法。  </p>
 <p>即this就是一个变量，指向当前类对象。每一个对象都会有一个this来表示本身。 </p>
 <p>例如：</p>
@@ -223,15 +224,15 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Student类</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断两个Student对象的age是否相等</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student o)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这个this就代表s1，s1就是这个调用test方法的对象</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age == o.age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">StudentTest类</span><br><span class="line">    StudentTest s1 = <span class="keyword">new</span> StudentTest(<span class="number">20</span>);</span><br><span class="line">    StudentTest s2 = <span class="keyword">new</span> StudentTest(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> f = s1.test(s2); <span class="comment">//s1调用方法test</span></span><br><span class="line">    System.out.println(f);</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意：this只能出现在构造器或者非静态方法中</strong></p>
-<h2 id="this关键字的使用"><a href="#this关键字的使用" class="headerlink" title="this关键字的使用"></a>this关键字的使用</h2><p>使用this可以区分成员变量和局部变量  </p>
+<h2 id="this关键字的使用"><a href="#this关键字的使用" class="headerlink" title="this关键字的使用"></a>this关键字的使用</h2><p><strong>使用this可以区分成员变量和局部变量</strong>  </p>
 <p>例如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="comment">//就近原则，哪个变量离这个代码近，那么这个name指的就是它</span></span><br><span class="line">        <span class="comment">//所以这里的name变量指的就是setName方法中的参数 name</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//变量前加上this，表示访问的就是属性name</span></span><br><span class="line">        System.out.println(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用this可以调用类中的方法   </p>
+<p><strong>使用this可以调用类中的方法</strong>   </p>
 <p>例如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        System.out.println(name);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用当前类中的setName方法</span></span><br><span class="line">        <span class="keyword">this</span>.setName(<span class="string">"Tom"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认情况下，可以把this省去不写</span></span><br><span class="line">        setName(<span class="string">"Tom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用this可以调用类中的构造器</p>
+<p><strong>使用this可以调用类中的构造器</strong></p>
 <p>例如： </p>
 <pre><code>//表示使用this调用类中的无参构造器
 this();
@@ -325,9 +326,18 @@ this(&quot;Tom&quot;);</code></pre><p>有这几点要注意</p>
   
 <nav id="article-nav">
   
+    <a href="/posts/1dbf5446.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java学习笔记Basic(十三)
+        
+      </div>
+    </a>
   
-    <a href="/posts/f7e4bfd9.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Basic--关于Java中的方法</div>
+  
+    <a href="/posts/315c9496.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">构造器</div>
       <i class="icon-circle-right"></i>
     </a>
   

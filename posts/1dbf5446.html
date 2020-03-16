@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>java学习笔记Basic(十三) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="封装和继承的补充">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记Basic(十三)">
+<meta property="og:url" content="http://yoursite.com/posts/1dbf5446.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="封装和继承的补充">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-16T09:18:26.000Z">
+<meta property="article:modified_time" content="2020-03-16T11:55:15.454Z">
 <meta property="article:author" content="zhoujin">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -184,29 +187,100 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-    <article id="post-java学习笔记-八" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<article id="post-java学习笔记-十三" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/1ea1a622.html">java学习笔记Basic(八)</a>
+    <h1 class="article-title" itemprop="name">
+      java学习笔记Basic(十三)
     </h1>
   
 
         
-        <a href="/posts/1ea1a622.html" class="archive-article-date">
-  	<time datetime="2020-03-05T07:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
+        <a href="/posts/1dbf5446.html" class="archive-article-date">
+  	<time datetime="2020-03-16T09:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="流程与循环控制语句"><a href="#流程与循环控制语句" class="headerlink" title="流程与循环控制语句"></a>流程与循环控制语句</h1>
-        
+        <h1 id="封装和继承的补充"><a href="#封装和继承的补充" class="headerlink" title="封装和继承的补充"></a>封装和继承的补充</h1><a id="more"></a>
+
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><ul>
+<li><strong>封装可以隐藏代码的实现细节</strong></li>
+</ul>
+<p>对于调用者来讲，很多时候，这个代码实现的细节，我们是没有必要、也不需要知道，我们只要知道这个方法叫什么名字，怎么去调用，调用的时候需要传什么参数，返回的结果是什么样子，以及调用的过程中可能会抛出什么异常，每种异常代表了什么情况等信息就可以了。也有一些情况，是方法/接口的提供提供者也不愿意让我们知道它们的实现细节，例如这些都是有商业用途的，或者软件不开源的等情况。</p>
+<pre><code>统一用户假如有三个用户：
+    user vip admin
+    查看当前的页面信息：
+        三个用户查看的到的内容是不同的，所以需要三个不同的方法针对这个三种用户，返回不同的信息
+        user  showInfo_user()
+        vip      showInfo_vip()
+        admin showInfo_admin()
+
+    可以进行封装：
+        public String showInfo_all(){
+            //根据当前调用者角色身份，来确定主要执行的代码
+            if(role == 0){
+                //执行对应的代码
+            }
+            else if(role == 1){
+                //执行对应的代码
+            }
+            else if(role == 2){
+                //执行对应的代码
+            }
+            return ...;
+        }</code></pre><p>​    </p>
+<ul>
+<li>封装可以提高系统的可维护性</li>
+</ul>
+<p>从封装后的结果来看，对于调用者，需要调用的接口变少了，调用的方式也变简单，提了的开发的效率，同时对于这些接口的提供者，我们维护接口的数量变少了，以前在很多地方编写的相同的代码，都封装起来，在其他地方进行调用，这样也减少了很多的维护工作量。</p>
+<ul>
+<li><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p><strong>继承是类和类之间的一种关系，Java中的类和类之间的关系有很多种，继承只是其中的一种，其他还有依赖、组合、聚合等。</strong></p>
+</li>
+<li><p><strong>继承关系有两个类，一个是子类，一个是父类。子类也可以称为派生类，父类也可以称为基类。子类继承父类使用关键字<u>extends</u>来表示</strong></p>
+</li>
+<li><p><strong>子类和父类之间，从意义上来说吗，需要有 <u>is a/an</u> 的关系</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//Student is a person</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//Dog is an animal</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：对于A类和B类之间的继承关系，不仅要考虑从语法的角度考虑怎么编写，还要从实际意义上考虑。让A类和B类之间有继承关系是否合适，这个关系是否合适，可以使用 <strong>is a</strong> 先做出一个基本的判定</p>
+</li>
+<li><p><strong>Java中的类和类之间的继承是<u>单继承</u>，接口和接口之间的<u>多继承</u></strong></p>
+<p><strong>单继承</strong>指的是，一个类只能有一个【直接】的父类型，但是一个父类可能会有很多<strong>超类</strong>（超类是指一个父类型的父类型，以及再往上的父类型）,Java中任何一个类（除了Object类），都是有且仅有一个【直接】继承的父类型，除此之外，这个类还可以有很多【间接】继承的父类型</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>注意：虽然一个类只能直接继承一个父类型，但是一个父类型可以被多个不同的类继承**</code></pre><ul>
+<li><p><strong>父类中的属性和方法，可以被子类继承</strong></p>
+<p>一个子类继承了父类，就可以继承父类中的属性和方法，但是在子类中是否可以【直接】使用这些属性和方法，需要看这些方法和属性在父类中原有的访问权限修饰符是什么</p>
+</li>
+</ul>
+<pre><code>**控制类、属性、方法、是否可以直接被访问的修饰符有：public  protected default  private**
+
+例如：父类中的属性和方法使用了**public**修饰，那么子类中就可以直接使用；若使用了**private**修饰，那么子类中不可以直接使用
+
+
+
+注意：父类中的构造器是不能被子类继承的，但是子类的构造器中可以调用父类的构造器，使用**super**关键字
+
+子类调用父类的构造器有两种情况
+
+- 如果父类中有默认的无参构造器，那么子类中就会默认调用隐式的自动调用父类中的无参构造器
+- 如果父类中没有默认的无参构造器，那么我们就需要显式的手动在子类中调用父类的有参构造器</code></pre><ul>
+<li><p><strong>若一个类没有显示的指定其父类型，那么编译就默认直接继承了Object类</strong></p>
+<p>Java中的每一个类都会直接或者间接的继承Object类，每一个对象都与Object都有 <strong>is a</strong> 的关系</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Object</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
       
 
       
@@ -228,16 +302,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/1ea1a622.html">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://codezhouj.github.io/http://yoursite.com/posts/1dbf5446.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/posts/634c746d.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java学习笔记Basic(十二)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -252,687 +385,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-break和continue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/1bc7f3c9.html">break和continue</a>
-    </h1>
-  
-
-        
-        <a href="/posts/1bc7f3c9.html" class="archive-article-date">
-  	<time datetime="2020-03-05T05:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>break/continue</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/1bc7f3c9.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#封装和继承的补充"><span class="toc-number">1.</span> <span class="toc-text">封装和继承的补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#封装"><span class="toc-number">1.1.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-number">1.2.</span> <span class="toc-text">继承</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-逻辑运算操作符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/5b3f9b02.html">逻辑运算操作符</a>
-    </h1>
-  
-
-        
-        <a href="/posts/5b3f9b02.html" class="archive-article-date">
-  	<time datetime="2020-03-03T13:17:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&amp;&amp;/||</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/5b3f9b02.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-七" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d7f3192e.html">java学习笔记Basic(七)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/d7f3192e.html" class="archive-article-date">
-  	<time datetime="2020-03-03T10:37:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/d7f3192e.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-六" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/48fb01a4.html">java学习笔记Basic(六)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/48fb01a4.html" class="archive-article-date">
-  	<time datetime="2020-02-28T01:01:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="理解对象，面向对象"><a href="#理解对象，面向对象" class="headerlink" title="理解对象，面向对象"></a>理解对象，面向对象</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/48fb01a4.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d1f449d6.html">java学习笔记Basic(五)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/d1f449d6.html" class="archive-article-date">
-  	<time datetime="2020-02-26T08:49:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="java中的注释-文档注释"><a href="#java中的注释-文档注释" class="headerlink" title="java中的注释 (*文档注释)"></a>java中的注释 (*文档注释)</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/d1f449d6.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d75f1eab.html">java学习笔记Basic(四)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/d75f1eab.html" class="archive-article-date">
-  	<time datetime="2020-02-24T07:15:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="类加载器—ClassLoader"><a href="#类加载器—ClassLoader" class="headerlink" title="类加载器—ClassLoader"></a>类加载器—ClassLoader</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/d75f1eab.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/2d1cf1a4.html">java学习笔记Basic(三)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/2d1cf1a4.html" class="archive-article-date">
-  	<time datetime="2020-02-21T05:16:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="关于jar包"><a href="#关于jar包" class="headerlink" title="关于jar包"></a>关于jar包</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/2d1cf1a4.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/53efd18f.html">java学习笔记Basic(二)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/53efd18f.html" class="archive-article-date">
-  	<time datetime="2020-02-19T07:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="配置JAVA-HOME、PATH和CLASSPATH变量的原因"><a href="#配置JAVA-HOME、PATH和CLASSPATH变量的原因" class="headerlink" title="配置JAVA_HOME、PATH和CLASSPATH变量的原因"></a>配置JAVA_HOME、PATH和CLASSPATH变量的原因</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/53efd18f.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/fcde4aed.html">java学习笔记Basic(一)</a>
-    </h1>
-  
-
-        
-        <a href="/posts/fcde4aed.html" class="archive-article-date">
-  	<time datetime="2020-02-18T04:43:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JDK的下载和安装"><a href="#JDK的下载和安装" class="headerlink" title="JDK的下载和安装"></a>JDK的下载和安装</h1>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/fcde4aed.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -955,8 +433,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
