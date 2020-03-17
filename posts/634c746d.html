@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java学习笔记Basic(十二) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="this关键字">
+  <meta name="description" content="this&#x2F;super关键字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java学习笔记Basic(十二)">
 <meta property="og:url" content="http://yoursite.com/posts/634c746d.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="this关键字">
+<meta property="og:description" content="this&#x2F;super关键字">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/posts/634c746d/1.png">
 <meta property="article:published_time" content="2020-03-12T06:19:49.000Z">
-<meta property="article:modified_time" content="2020-03-13T03:05:27.138Z">
+<meta property="article:modified_time" content="2020-03-17T10:53:21.679Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -209,29 +209,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><a id="more"></a>
+        <h1 id="this-super关键字"><a href="#this-super关键字" class="headerlink" title="this/super关键字"></a>this/super关键字</h1><a id="more"></a>
 
 <h2 id="this关键字的意义"><a href="#this关键字的意义" class="headerlink" title="this关键字的意义"></a>this关键字的意义</h2><p>在编写类的过程中，代码中使用了this，这个this就表示当前这个类【将来】创建出的那个对象，并且使用这个对象调用了this所在的方法。  </p>
 <p>即this就是一个变量，指向当前类对象。每一个对象都会有一个this来表示本身。 </p>
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Student stu = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"stu = "</span>+stu);</span><br><span class="line">        stu.printThis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printThis</span><span class="params">()</span></span>&#123;</span><br><span class="line">  System.out.println(<span class="string">"this = "</span>+<span class="keyword">this</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/posts/634c746d/1.png" alt="图片">  </p>
+<p><img src="/posts/634c746d/1.png" alt="图片"><br>&nbsp;</p>
 <p><strong>方法中this的含义</strong>  </p>
 <p>  如果在一个方法里面定义了this，那么将来哪个对象调用的这个方法，这个this代表的就是这个对象 。   </p>
 <p>  即this代表的就是方法的调用者 </p>
 <p>上代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Student类</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断两个Student对象的age是否相等</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Student o)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这个this就代表s1，s1就是这个调用test方法的对象</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age == o.age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">StudentTest类</span><br><span class="line">    StudentTest s1 = <span class="keyword">new</span> StudentTest(<span class="number">20</span>);</span><br><span class="line">    StudentTest s2 = <span class="keyword">new</span> StudentTest(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> f = s1.test(s2); <span class="comment">//s1调用方法test</span></span><br><span class="line">    System.out.println(f);</span><br></pre></td></tr></table></figure>
-
+<p>&nbsp;</p>
 <p><strong>注意：this只能出现在构造器或者非静态方法中</strong></p>
 <h2 id="this关键字的使用"><a href="#this关键字的使用" class="headerlink" title="this关键字的使用"></a>this关键字的使用</h2><p><strong>使用this可以区分成员变量和局部变量</strong>  </p>
 <p>例如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="comment">//就近原则，哪个变量离这个代码近，那么这个name指的就是它</span></span><br><span class="line">        <span class="comment">//所以这里的name变量指的就是setName方法中的参数 name</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//变量前加上this，表示访问的就是属性name</span></span><br><span class="line">        System.out.println(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>&nbsp;</p>
 <p><strong>使用this可以调用类中的方法</strong>   </p>
 <p>例如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        System.out.println(name);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用当前类中的setName方法</span></span><br><span class="line">        <span class="keyword">this</span>.setName(<span class="string">"Tom"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认情况下，可以把this省去不写</span></span><br><span class="line">        setName(<span class="string">"Tom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>&nbsp;</p>
 <p><strong>使用this可以调用类中的构造器</strong></p>
 <p>例如： </p>
 <pre><code>//表示使用this调用类中的无参构造器
@@ -243,6 +243,57 @@ this(&quot;Tom&quot;);</code></pre><p>有这几点要注意</p>
 <li>必须是构造器中的第一句代码,只有this调用构造器的时候才有这个要求。</li>
 <li>不能出现构造器的递归调用</li>
 </ul>
+<p>&nbsp;</p>
+<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><p>子类继承父类之后，在子类中可以使用关键字<strong>this</strong>表示访问子类中的属性、方法、构造器。也可以在子类中使用<strong>super</strong>关键字表示访问父类中的属性、方法、构造器。</p>
+<ul>
+<li><p><strong>访问父类中的属性</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="comment">//注意属性的修饰符</span></span><br><span class="line">    <span class="keyword">public</span> String name = <span class="string">"zs"</span>;</span><br><span class="line">    <span class="comment">//private String name = "zs";</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(name);         <span class="comment">//调用本类中的属性</span></span><br><span class="line">        System.out.println(<span class="keyword">this</span>.name);    <span class="comment">//调用本类中的属性，和上一行等价</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//若父类中的属性修饰符是private，编译报错</span></span><br><span class="line">        System.out.println(<span class="keyword">super</span>.name);   <span class="comment">//调用父类中的属性</span></span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>  注意：</p>
+<ul>
+<li><p>如果父类中的属性是<strong>private</strong>修饰的，那么子类使用super关键字也是不能直接调用的</p>
+</li>
+<li><p>如果父类中的属性name被继承了，子类中又写了一个同样的属性，那么这时候this  super就可以区分我们访问的name到底是父类的属性还是子类的属性</p>
+</li>
+<li><p>如果父类中的name属性，子类继承父类后没有自己重新添加name属性，则使用<strong>this.name</strong>和<strong>super.name</strong>访问的都是父类中的name属性</p>
+<p>&nbsp;   </p>
+</li>
+</ul>
+<ul>
+<li><p><strong>调用父类中的方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.printlmn(<span class="string">"person run..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.printlmn(<span class="string">"student run..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在这里既可以访问到父类的方法，也可以访问自己类中的run方法</span></span><br><span class="line">    <span class="comment">//可以使用this和super区分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<p>注意：如果调用或者访问的时候，没有因为同名而带来歧义的话，可以不使用this和super，直接通过方法名或者属性名进行调用就可以了</p>
+<p>&nbsp;</p>
+</li>
+<li><p><strong>调用父类中的构造器</strong></p>
+<ul>
+<li><p>显示调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="string">"tom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>隐式调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//默认使用了super()调用父类中的无参构造器</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>无论是显示调用还是隐式调用，super语句一定要编写在子类构造器的第一行</p>
+</li>
+<li><p>在子类的构造器中，可以使用this( )来调用子类中的其他构造器，也可以使用super（）来调用父类中的构造器，但是这两个不能同时出现，因为他们俩任何地方出现都需要放在构造器的第一行</p>
+</li>
+<li><p>在创建一个子类对象时，肯定要调用到子类中的一个构造器，并且在子类构造器执行之前，一定会先调用父类的构造器的。这样做的目的是在子类构造器执行之前，先进行父类的构造器完成对父类中属性的初始化，保证子类继承过来的父类中的属性是已经初始化好可以直接使用的。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>this在类中是可以打印输出的，但是super不能</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="keyword">this</span>);</span><br><span class="line">        System.out.println(<span class="keyword">super</span>);  <span class="comment">//编译报错，语法不支持</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
       
 
@@ -364,7 +415,7 @@ this(&quot;Tom&quot;);</code></pre><p>有这几点要注意</p>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#this关键字"><span class="toc-number">1.</span> <span class="toc-text">this关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#this关键字的意义"><span class="toc-number">1.1.</span> <span class="toc-text">this关键字的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this关键字的使用"><span class="toc-number">1.2.</span> <span class="toc-text">this关键字的使用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#this-super关键字"><span class="toc-number">1.</span> <span class="toc-text">this&#x2F;super关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#this关键字的意义"><span class="toc-number">1.1.</span> <span class="toc-text">this关键字的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this关键字的使用"><span class="toc-number">1.2.</span> <span class="toc-text">this关键字的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#super关键字"><span class="toc-number">1.3.</span> <span class="toc-text">super关键字</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
