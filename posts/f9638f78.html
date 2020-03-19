@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>数据结构与算法 | Hexo</title>
+  <title>java学习笔记Advance(一) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="数据结构与算法">
-<meta property="og:url" content="http://yoursite.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
+  <meta name="description" content="static 修饰符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记Advance(一)">
+<meta property="og:url" content="http://yoursite.com/posts/f9638f78.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="static 修饰符">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-02-29T14:41:02.000Z">
-<meta property="article:modified_time" content="2020-02-29T14:41:02.254Z">
+<meta property="og:image" content="http://yoursite.com/posts/f9638f78/2.png">
+<meta property="og:image" content="http://yoursite.com/posts/f9638f78/1.png">
+<meta property="og:image" content="http://yoursite.com/posts/f9638f78/3.png">
+<meta property="article:published_time" content="2020-03-19T06:16:52.000Z">
+<meta property="article:modified_time" content="2020-03-19T09:40:18.546Z">
 <meta property="article:author" content="zhoujin">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/posts/f9638f78/2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -185,27 +190,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            
+<article id="post-java学习笔记Advance-一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据结构与算法
+      java学习笔记Advance(一)
     </h1>
   
 
         
-        <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html" class="archive-article-date">
-  	<time datetime="2020-02-29T14:41:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-29</time>
+        <a href="/posts/f9638f78.html" class="archive-article-date">
+  	<time datetime="2020-03-19T06:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="static-修饰符"><a href="#static-修饰符" class="headerlink" title="static 修饰符"></a>static 修饰符</h1><a id="more"></a>
+
+<p>使用static修饰的成员变量，就是静态变量，反之为非静态变量</p>
+<p>&nbsp;</p>
+<h2 id="静态变量和非静态变量的区别"><a href="#静态变量和非静态变量的区别" class="headerlink" title="静态变量和非静态变量的区别"></a>静态变量和非静态变量的区别</h2><ul>
+<li><p>静态变量是属于类的，可以使用类名来访问，也可以使用对象来访问。</p>
+<p>非静态变量是属于对象的，只能使用对象来访问。</p>
+</li>
+<li><p>一个类中的静态属性，在内存中只有一份，它是这个类所属对象所共享的。</p>
+<p>一个类中的非静态属性，每次创建一个新的对象，这个新的对象中就会有一份这个非静态属性。</p>
+</li>
+<li></li>
+<li><p>​    </p>
+<p>&nbsp;</p>
+</li>
+</ul>
+<p><strong>思考: 为什么静态方法中不可以访问非静态的属性和方法，而非静态的方法可以访问静态的属性和方法？</strong></p>
+<p>类中的属性和方法，都必须分配内存空间，在其中进行初始化操作后，才能被访问和调用。</p>
+<p>静态的属性和方法，在类被加载到内存之后，已经在一个叫做静态代码区的内存区域中，专门做好了初始化相关的操作，这些属性和方法可以随便被类进行调用。</p>
+<p>非静态的属性和方法，是在使用new关键字创建对象后，再对象所在的内存空间（也就是堆中）完成对这些非静态属性和方法的初始化工作，在这之后，我们才可以使用对象来访问这些非静态的属性和方法。</p>
+<p>从这个初始化的时间点上看，可以知道，静态的属性和方法在初始化完成可以被调用的时候，那些非静态的属性和方法还没有完成相关的初始化工作，也就不能被调用，所以静态方法无法直接访问非静态的属性和方法，但非静态属性和方法完成初始化工作，可以被调用的时候</p>
+<p>&nbsp;</p>
+<h2 id="代码块和静态代码块"><a href="#代码块和静态代码块" class="headerlink" title="代码块和静态代码块"></a>代码块和静态代码块</h2><p>在类中，可以编写匿名代码块和静态代码块</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//代码块（匿名代码块）</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span>&#123;</span><br><span class="line">		<span class="comment">//静态代码块</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h3 id="匿名代码块和静态代码块的调用"><a href="#匿名代码块和静态代码块的调用" class="headerlink" title="匿名代码块和静态代码块的调用"></a>匿名代码块和静态代码块的调用</h3><p>因为都没有名字，所以在代码中，并不能直接调用这两种代码块</p>
+<ul>
+<li><strong>匿名代码块</strong>会在创建对象的时候，自动的执行，并且是在类的构造器之前。如果进行了多次创建对象，那么每次都会自动执行这个匿名代码块</li>
+<li><strong>静态代码块</strong>会在类加载到内存的时候，自动执行一次，并且只会执行这一次，因为这个类加载到内存后，就不会再加载这个类了</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"匿名代码块执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"静态代码块执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"构造器执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Person();   <span class="comment">//，运行结果为图1;不new这三个对象，main方法里为空，运行结果为图2</span></span><br><span class="line">        <span class="keyword">new</span> Person();</span><br><span class="line">        <span class="keyword">new</span> Person();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/posts/f9638f78/2.png" alt="图片"><br><img src="/posts/f9638f78/1.png" alt="图片"></p>
+<p>&nbsp;</p>
+<h3 id="匿名代码块和静态代码块的作用"><a href="#匿名代码块和静态代码块的作用" class="headerlink" title="匿名代码块和静态代码块的作用"></a>匿名代码块和静态代码块的作用</h3><ul>
+<li><p>匿名代码块</p>
+<p>匿名代码块是为了给对象中的非静态属性赋值的。与构造器的功能相似，但是构造器的作用有两个，一个是配合new关键字创建对象，另一个就是给对象中的属性做初始化，，。所以我们平时用到的匿名代码块不多，因为它的功能是可以被构造器代替的。</p>
+</li>
+<li><p>静态代码块</p>
+<p>静态代码块是给类中的静态属性做初始化，或者在类加载的时候就给这个类本身做一些其他的初始化工作，因为静态代码块执行的时间点比较早，所以我们在静态代码块中编写的代码，很早就能得到执行，从而提前做一些初始化工作。例如，可以在静态代码块中，早早的对静态属性做初始化赋值工作</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">        name = <span class="string">"TOM"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这样的输出值是null</span></span><br><span class="line">        <span class="comment">//因为没有创建对象，构造器没有执行</span></span><br><span class="line">        System.out.println(Person.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+</li>
+</ul>
+<p>  对于这种情况，我们就可以使用静态代码块，保证静态属性在被访问前，一定是完成了初始化工作的</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        name = <span class="string">"TOM"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这样的输出值是null</span></span><br><span class="line">        <span class="comment">//因为没有创建对象，构造器没有执行</span></span><br><span class="line">        System.out.println(Person.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  &nbsp;</p>
+<h2 id="创建和初始化对象的过程"><a href="#创建和初始化对象的过程" class="headerlink" title="创建和初始化对象的过程"></a>创建和初始化对象的过程</h2><p>  针对这句代码：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student s = <span class="keyword">new</span> Student();</span><br></pre></td></tr></table></figure>
+
+<p>  假设Student 类之前没有被加载过</p>
+<ol>
+<li><p>类加载，同时初始化静态属性的默认值</p>
+</li>
+<li><p>执行静态代码块</p>
+</li>
+<li><p>分配内存空间，同时初始化非静态属性的默认值</p>
+</li>
+<li><p>调用父类的构造器</p>
+</li>
+<li><p>对Student对象中的非静态属性做显示赋值（如果有）</p>
+<p>private  String  name = “TOM”;</p>
+</li>
+<li><p>执行匿名代码块</p>
+</li>
+<li><p>执行Student类中的构造器</p>
+</li>
+<li><p>把创建好的对象地址值，赋值给变量 s</p>
+</li>
+</ol>
+<p>举个栗子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Person类</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"父类匿名代码块执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类静态代码块执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类构造器执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Student类</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">"子类匿名代码块执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"子类静态代码块执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"子类构造器执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Student s = <span class="keyword">new</span> Student();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/posts/f9638f78/3.png" alt="图片"></p>
+<p> 第一梯队 静态属性</p>
+<ul>
+<li><p>类加载器 静态代码块 </p>
+<p>第二梯队 父类中的非静态属性</p>
+</li>
+<li><p>super语法的特殊性<br>会默认调用父类中的构造器和匿名代码块</p>
+<p>第三梯队 子类中的非静态属性</p>
+</li>
+<li><p>子类中的构造器和匿名代码块</p>
+</li>
+</ul>
+
       
 
       
@@ -213,6 +311,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -263,7 +372,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://codezhouj.github.io/http://yoursite.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://codezhouj.github.io/http://yoursite.com/posts/f9638f78.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,6 +384,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/posts/3d0f623f.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">汉诺塔</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -296,7 +415,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#static-修饰符"><span class="toc-number">1.</span> <span class="toc-text">static 修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#静态变量和非静态变量的区别"><span class="toc-number">1.1.</span> <span class="toc-text">静态变量和非静态变量的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码块和静态代码块"><span class="toc-number">1.2.</span> <span class="toc-text">代码块和静态代码块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名代码块和静态代码块的调用"><span class="toc-number">1.2.1.</span> <span class="toc-text">匿名代码块和静态代码块的调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名代码块和静态代码块的作用"><span class="toc-number">1.2.2.</span> <span class="toc-text">匿名代码块和静态代码块的作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建和初始化对象的过程"><span class="toc-number">1.3.</span> <span class="toc-text">创建和初始化对象的过程</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -338,7 +457,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

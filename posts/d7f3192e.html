@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/posts/d7f3192e/1.png">
 <meta property="article:published_time" content="2020-03-03T10:37:03.000Z">
-<meta property="article:modified_time" content="2020-03-11T05:18:25.604Z">
+<meta property="article:modified_time" content="2020-03-19T08:34:18.397Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -212,27 +212,32 @@
         <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><a id="more"></a>
 <h2 id="基本类型之间的转换"><a href="#基本类型之间的转换" class="headerlink" title="基本类型之间的转换"></a>基本类型之间的转换</h2><h3 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h3><p>也是自动转换，在JVM运行期间，只要满足条件，就可以自动完成类型转换的过程。一般是数据范围比较小的会自动转换成数据范围较大的类型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> a = <span class="number">1</span>;   <span class="comment">//byte为8位</span></span><br><span class="line"><span class="keyword">int</span> b = a;    </span><br><span class="line"></span><br><span class="line"><span class="comment">//int为32位，将数据范围小的数据赋值给数据范围大的基本类型变量，会自动转换。即低精度会自动转为高精度</span></span><br></pre></td></tr></table></figure>
-
+<p>&nbsp;</p>
 <h3 id="显示转换"><a href="#显示转换" class="headerlink" title="显示转换"></a>显示转换</h3><p>也是手动转换或者强制转换。编译器发现类型无法自动转换的情况，就会编译报错，当我们确认无误后，就可以进行类型强制转换，但这样会存在一定风险的，运行这个类型转换的代码时，可能会抛出类型转换异常。<br>比如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = a; g</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = a;</span><br></pre></td></tr></table></figure>
 <p>此时会编译报错，因为a时int型，而b是byte类型，把一个大范围的数据，赋值给一个范围小的变量是不允许的，这种情况编译器不会自动进行类型转换的，因为可能会造成精度损失，只能我们自己手动进行强制类型转换 。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">byte</span>)a; <span class="comment">//强制转换为byte类型</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
 <p>对于基本类型，强制转换的过程就是把多余的高位抹去，这样可能会对数据的造成影响。<br>比如： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a =<span class="number">1000</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">byte</span>)a</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
 <p>此时，变量a的值已经超过了byte所能表示的最大范围，我们看下输出结果  </p>
 <p><img src="/posts/d7f3192e/1.png" alt="图片"></p>
 <p>我们可以顺便分析一下为什么结果是-24。首先1000对应的二进制编码是0011 1110 1000‬（前面24个0省略没写出来），byte类型为8位，int类型强制转为byte类型，高28位被截断，此时变量b在机器中的二进制就变成了11101000，因为整型变量在机器中是以补码的形式存在的，故对应的原码真值就是-24</p>
 <p><strong>注意：若将基本类型中的浮点型强制转换为整型，那么浮点型数据的小数部分会直接抹去。</strong></p>
+<p>&nbsp;</p>
 <h2 id="引用类型之间的转换"><a href="#引用类型之间的转换" class="headerlink" title="引用类型之间的转换"></a>引用类型之间的转换</h2><h3 id="隐式转换-1"><a href="#隐式转换-1" class="headerlink" title="隐式转换"></a>隐式转换</h3><p>例如(假设已经定义了一个Student类):</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student s = <span class="keyword">new</span>  Student();</span><br><span class="line">Object o = s;</span><br></pre></td></tr></table></figure>
 <p>子类类型的变量会自动转成父类，Object是父类型，Student是子类型。虽然是引用类型之间的类型转换，但是和基本类型之间的转换还是保持一个规则，即=右边小范围的类型数据，会自动转为=左边大范围类型的数据。</p>
+<p>&nbsp;</p>
 <h3 id="显示转换-1"><a href="#显示转换-1" class="headerlink" title="显示转换"></a>显示转换</h3><p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Student(); <span class="comment">//这里存在隐式转换</span></span><br><span class="line">Student s = o;</span><br></pre></td></tr></table></figure>
 <p>这样是不能编译通过的，<strong>o</strong>是父类型的变量，而变量<strong>s</strong>是子类型的变量，此时必须进行强制类型转换,第二条语句应改为 <strong>Student s = (Student)o;</strong>。编译时，能否让这种类型转换的代码通过，编译器看的是其=号两边的类型是否一致，或者有没有类似子父类的关系，例如刚刚修改过的代码，这条语句编译时，编译器看的变量<strong>o</strong>是Object类型，而变量<strong>s</strong>的类型的Student类型，这两个类型是有子父类关系的，故能编译通过。但是在运行过程中，JVM能否成功执行这句代码，看的是变量<strong>o</strong>在运行时，<strong>o</strong>所指的对象具体是什么类型的，如果<strong>o</strong>所指的类型是Student或者Student类型的子类型，，那么这句代码可成功执行，否则会报类型转换异常的错误。   </p>
 <p>我们在做类型转换的时候，可以使用<strong>instanceof</strong>关键字进行判断，看引用<strong>o</strong>是否可以转成Student类型,避免发生类型转换异常的错误：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="keyword">if</span>(o <span class="keyword">instanceof</span> Student)&#123;</span><br><span class="line">    Student s = (Student)o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>&nbsp;</p>
 <h2 id="类型转换的特点"><a href="#类型转换的特点" class="headerlink" title="类型转换的特点"></a>类型转换的特点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引用类型强制转换</span></span><br><span class="line">Object o = <span class="keyword">new</span> Student();</span><br><span class="line">Student s = (Student)o;</span><br><span class="line"></span><br><span class="line"><span class="comment">//基本数据类型强制转换</span></span><br><span class="line"><span class="keyword">int</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">int</span>)a;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
 <p>这样转换之后，不管是o变量还是a变量，强制转换后的类型是不变的，只是把原变量强制转换后的结果赋给另一个变量，这个转换对变量a本身没有任何影响，只是在计算机的内存中使用一下变量a的值，a变量依然是int类型，而不会变成byte类型。引用类型的强制转换也是如此。java中的变量类型一旦声明，是不会改变的，直到变量在内存中被释放为止</p>
 
       
@@ -321,7 +326,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          逻辑运算操作符
+          Basic-逻辑运算操作符
         
       </div>
     </a>
@@ -480,6 +485,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
             
             <div class="clearfix"></div>
