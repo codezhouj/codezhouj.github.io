@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: java | Hexo</title>
+  <title>java学习笔记Advance(十二) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/java/page/2/index.html">
+  <meta name="description" content="反射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记Advance(十二)">
+<meta property="og:url" content="http://yoursite.com/posts/9bc9e249.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="反射">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-04T09:25:05.000Z">
+<meta property="article:modified_time" content="2020-04-13T09:32:38.728Z">
 <meta property="article:author" content="zhoujin">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -184,35 +187,224 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-java学习笔记Advance-十二" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java学习笔记Advance(十二)
+    </h1>
+  
+
+        
+        <a href="/posts/9bc9e249.html" class="archive-article-date">
+  	<time datetime="2020-04-04T09:25:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><a id="more"></a>
+
+<p>反射是Java中的一种机制，允许我们在编写代码的时候，虽然对一个类型的相关信息并不明确，但是可以使用一些变量先把这些内容给表示出来，然后在程序运行的时候，再确定这些信息都是什么。</p>
+<p>例如，需要创建一个类的对象，但是在编写代码时并不知道这个类是谁，那么这个代码该怎么编写？</p>
+<p>注意，在将来运行的时候，可以通过用户的参数再来确定这个类是谁。</p>
+<p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(String className)</span></span>&#123;</span><br><span class="line">	Object obj = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="string">"Student"</span>.equals(className))&#123;</span><br><span class="line">		obj = <span class="keyword">new</span> Student();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"Teacher"</span>.equals(className))&#123;</span><br><span class="line">		obj = <span class="keyword">new</span> Teacher();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"Person"</span>.equals(className))&#123;</span><br><span class="line">		obj = <span class="keyword">new</span> Person();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"Object"</span>.equals(className))&#123;</span><br><span class="line">		obj = <span class="keyword">new</span> Object();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"String"</span>.equals(className))&#123;</span><br><span class="line">		obj = <span class="keyword">new</span> String();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用反射机制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(String className)</span></span>&#123;</span><br><span class="line">    Object obj = Class.<span class="keyword">for</span>(className).newIntance();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：在编写代码的时候，有一些情况，程序中的很多信息是未知的，只能在运行的时候通过参数来确定，那么这个时候，我们也需要把程序的代码先编写出来，然后编译再运行。</p>
+<p>&nbsp;</p>
+<h2 id="普通代码和反射代码的区别"><a href="#普通代码和反射代码的区别" class="headerlink" title="普通代码和反射代码的区别"></a>普通代码和反射代码的区别</h2><p>目标是创建一个类的对象，完成这个目标可能会出现两种情况</p>
+<ul>
+<li><p>情况一，现在需要创建一个对象，对象 的类型是Student</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student stu = <span class="keyword">new</span> Student();</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>情况二，现在需要创建一个对象，对象类型是未知的，需要再程序运行起来之后，通过一些条件和参数才能确定这个对象的类型是什么。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//className的值，是运行是通过一些条件或者参数确定的</span></span><br><span class="line">String className = <span class="string">""</span>;</span><br><span class="line">Object obj = Class.forName(className).newInstance();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="Class类型的意义"><a href="#Class类型的意义" class="headerlink" title="Class类型的意义"></a>Class类型的意义</h2><p>注意区分class和Class的区别</p>
+<p>class是Java中的关键字，声明类的时候需要用到</p>
+<p>Class是JAVA-API中提供的一个类，这个类就是我们使用反射功能的入口。</p>
+<p>Java中的每一个类都是对指定事物的抽象，这个类型就代表了这一类的事物。</p>
+<p>比如：<strong>学生—抽象—》Student</strong></p>
+<p>​    Student类就是对学生的抽象性概括，描述了学生应该具备什么属性和方法。</p>
+<p>那么Java中的类型是否可以进行抽象，最后抽象成一个类？</p>
+<p>八种基本类型和三种引用类型—抽象—》Class</p>
+<p>Class类就是对Java中的类型的概括性描述，描述Java中的类型应该具备什么特点。Class类型的一个对象，可以代表任何一个Java类型。</p>
+<ul>
+<li><p>使用Class对象表示基本类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;		</span><br><span class="line">	Class c = <span class="keyword">int</span><span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//判断对象c所代表的类型是否是基本类型</span></span><br><span class="line">	System.out.println(c.isPrimitive());</span><br><span class="line">	<span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">	System.out.println(c.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Class对象表示类类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test21</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//这个对象c代表Student类型</span></span><br><span class="line">	Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//判断对象c所代表的类型是否是内部类</span></span><br><span class="line">	System.out.println(c.isMemberClass());</span><br><span class="line">	<span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">	System.out.println(c.getName());</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Class对象表示接口类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//这个对象c代表接口类型</span></span><br><span class="line">	Class c = Action<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//判断对象c所代表的类型是否是接口类</span></span><br><span class="line">	System.out.println(c.isInterface());</span><br><span class="line">	<span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">	System.out.println(c.getName());</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Class对象表示数组类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">    Class c = <span class="keyword">int</span>[]<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    <span class="comment">//判断对象c所代表的类型是是数组类型</span></span><br><span class="line">    System.out.println(c.isArray());</span><br><span class="line">    <span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">    System.out.println(c.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>Class类是对java中所有的类型抽象而得到的，所以可以使用Class的对象来表示java中的任何一个类型，这个道理就像可以使用Student对象来表示任何一个学生是一样的</li>
+<li>java中的任何类型，都可以访问到自己对应的class对象</li>
+<li>java中的每一种类型，都【有且只有】唯一的一个Class类型对象与之对应。并且这个Class类型对象是在每个类进行类加载的时候，自动生成的。</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="获取一个类型对应的Class对象的几种方式"><a href="#获取一个类型对应的Class对象的几种方式" class="headerlink" title="获取一个类型对应的Class对象的几种方式"></a>获取一个类型对应的Class对象的几种方式</h2><p>例如，定义了一个类型Student，如果要获取这个Student类型所对应的Class对象，有以下几种方式：</p>
+<ul>
+<li><p>直接使用类名.class来获取</p>
+<p>类，接口，数组，基本类型可以使用这种方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用这个类的对象来获取</p>
+<p>类，数组类型可以使用这种方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Student stu = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">Class c = stu.getClass();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Class中的静态方法<strong>forName</strong>获取</p>
+<p>类，接口类型可以使用这种方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String className = <span class="string">"com.zj.test.Student"</span>;</span><br><span class="line"></span><br><span class="line">Class c = Class.forName(className);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>注意，在使用多态的时候，获取这个Class对象的区别</p>
+<p>实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Student();</span><br><span class="line">Class c = Person<span class="class">.<span class="keyword">class</span></span>; <span class="comment">//获取的是Person类型对应的Class对象</span></span><br><span class="line">Class c = p.getClass();<span class="comment">//获取的是引用p所指向对象的实际类型所对应的Class对象</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="反射机制中所提供的类"><a href="#反射机制中所提供的类" class="headerlink" title="反射机制中所提供的类"></a>反射机制中所提供的类</h2><p>java.lang包中：<br>        Class类              对java中所有类型的抽象（反射的入口）<br>        Package类        对java中所有包的抽象<br>java.lang.reflect包中：<br>        Modifier类          对java中所有修饰符的抽象<br>        Field类                 对java中所有属性的抽象<br>        Method类           对java中所有方法的抽象<br>        Constructor类    对java中所有构造器的抽象</p>
+<p>&nbsp;</p>
+<ul>
+<li><p>获取类所处的包的相关信息—<strong>getPackage()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    Package p = c.getPackage();</span><br><span class="line">    System.out.println(p.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>获取类的修饰符的相关信息—<strong>getModifiers()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">          Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">  </span><br><span class="line">          <span class="keyword">int</span> m = c.getModifiers();  <span class="comment">//获取类的修饰符信息</span></span><br><span class="line">  </span><br><span class="line">          System.out.println(m);  <span class="comment">//输出结果为2</span></span><br><span class="line">          System.out.println(<span class="string">"-----------------"</span>);</span><br><span class="line">          System.out.println(Modifier.PUBLIC); <span class="comment">//1</span></span><br><span class="line">          System.out.println(Modifier.PRIVATE); <span class="comment">//2</span></span><br><span class="line">          System.out.println(Modifier.STATIC); <span class="comment">//8</span></span><br><span class="line">          System.out.println(Modifier.ABSTRACT); <span class="comment">//1024</span></span><br><span class="line">          System.out.println(<span class="string">"-----------------"</span>);</span><br><span class="line">          System.out.println(Modifier.isPrivate(m));<span class="comment">//类是否包含private修饰符</span></span><br><span class="line">          System.out.println(Modifier.isAbstract(m));<span class="comment">//类是否含abstract修饰符</span></span><br><span class="line">  </span><br><span class="line">      &#125;</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>获取类的名字（全限定名）—<strong>getName()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">            Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">            String className = c.getName();</span><br><span class="line">System.out.println(className);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>获取类的父类型(若当前类型无父类型，返回null)—<strong>getSuperclass</strong>()</p>
+<p>基本类型是没有父类型的，接口可以继承父接口，但是这个方法（getSuperclass）不能获取到接口继承的父接口,因为接口是多继承，这个方法返回的是唯一的Class类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//获取c所对应类型的父类型</span></span><br><span class="line">	Class superClass = c.getSuperclass();</span><br><span class="line">	<span class="comment">//获取类的父类型的简单名字--Object</span></span><br><span class="line">	System.out.println(superClass.getSimpleName());</span><br><span class="line">	<span class="comment">//获取类的父类型的全限定名--java.lang.Object</span></span><br><span class="line">	System.out.println(superClass.getName());</span><br><span class="line">             <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>判断一个类型和另一个类型是否是子父类型的关系—<strong>isAssignableFrom()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Class c1 = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    Class c2 = Object<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    <span class="comment">//c2是否是c1的父类型</span></span><br><span class="line">    <span class="comment">//使用c2类型声明的变量，可不可以使用c1类型的对象进行赋值</span></span><br><span class="line">    <span class="comment">//c2和c1是否兼容，若兼容，则c2类型可以指向c1类型的对象</span></span><br><span class="line">    <span class="keyword">boolean</span> b = c2.isAssignableFrom(c1);</span><br><span class="line">    System.out.println(b);  <span class="comment">//true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>获取一个类中的属性的相关信息</p>
+<p><strong>Field[] getFields()</strong> —获取类中public修饰的属性  也包含从父类中继承来的public属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	Field[] fields = c.getFields(); </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(Field f: fields)&#123;</span><br><span class="line">		System.out.println(f.getModifiers());<span class="comment">//获取类中属性修饰符</span></span><br><span class="line">		System.out.println(f.getType().getSimpleName());<span class="comment">//获取类中属性的类型</span></span><br><span class="line">		System.out.println(f.getName()); <span class="comment">//获取类中属性名</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">         <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> String name;</span><br><span class="line">         &#125;		</span><br><span class="line">         <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> <span class="keyword">long</span> id;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>  <strong>Field getField(String name)</strong>–获取类中声明的方法的具体属性值，只能拿到公共（public）的属性</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    Field f = s.getField(<span class="string">"name"</span>);</span><br><span class="line">    Student stu = <span class="keyword">new</span> Student();</span><br><span class="line">   <span class="comment">// stu.name = "tom";</span></span><br><span class="line">  </span><br><span class="line">    Object value = f.get(stu); <span class="comment">//获取对象中的属性值</span></span><br><span class="line">    System.out.println(value);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>  <strong>Field[]  getDeclaredFields()</strong>—获取类中的所有属性，但是不能获取到从父类继承来的属性</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span><span class="keyword">throws</span> <span class="title">Exception</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    Field[] field = c.getDeclaredFields();</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span>(Field f : field)&#123;</span><br><span class="line">        System.out.println(f.getModifiers());<span class="comment">//获取类中属性修饰符</span></span><br><span class="line">        System.out.println(f.getType().getSimpleName());<span class="comment">//获取类中属性的类型</span></span><br><span class="line">        System.out.println(f.getName());<span class="comment">//获取类中的属性名</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">long</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  输出结果：</p>
+<blockquote>
+<p>1<br>String<br>name<br>2<br>int<br>age</p>
+</blockquote>
+<p>  <strong>Field  getDeclaredField(String name)</strong>—获取类中声明方法的具体值</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span><span class="keyword">throws</span> <span class="title">Exception</span><span class="params">()</span></span>&#123;</span><br><span class="line">              Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	 Field f = c.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line">	 System.out.println(f.getModifiers());<span class="comment">//获取类中属性修饰符</span></span><br><span class="line">	 System.out.println(f.getType().getSimpleName());<span class="comment">//获取类中属性的类型</span></span><br><span class="line">	 System.out.println(f.getName()); <span class="comment">//获取类中属性名  </span></span><br><span class="line">		</span><br><span class="line">	 Student stu = <span class="keyword">new</span> Student();</span><br><span class="line">	 </span><br><span class="line">	 <span class="comment">//设置f所代表属性的访问性为true</span></span><br><span class="line">	 f.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">	 </span><br><span class="line">	 f.set(stu, <span class="number">20</span>);</span><br><span class="line">	 </span><br><span class="line">	 Object value = f.get(stu);</span><br><span class="line">	 System.out.println(value);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">         <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> String name;</span><br><span class="line">             <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">         &#125;</span><br><span class="line">  </span><br><span class="line">          <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> <span class="keyword">long</span> id;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>获取类所实现的接口，或者接口所继承的所有父接口—<strong>getInterfaces()</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test8</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//获取c所代表的类型所实现的所有接口</span></span><br><span class="line">	Class[] arr = c.getInterfaces();</span><br><span class="line">	<span class="keyword">for</span>(Class clazz : arr) &#123;</span><br><span class="line">		System.out.println(clazz.getName());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;				</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">         <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Action</span>,<span class="title">superAction</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> String name;</span><br><span class="line">             <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">         &#125;</span><br><span class="line">  </span><br><span class="line">         <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> <span class="keyword">long</span> id;</span><br><span class="line">         &#125;</span><br><span class="line">  </span><br><span class="line">         <span class="class"><span class="keyword">interface</span> <span class="title">superAction</span></span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">         <span class="class"><span class="keyword">interface</span> <span class="title">Action</span> <span class="keyword">extends</span> <span class="title">superAction</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>获取类中的方法信息</p>
+<p>​    获取当前类中的所有public方法，包含从父类中继承的public方法</p>
+<ul>
+<li><p><strong>Method[]     getMethods()</strong></p>
+</li>
+<li><p><strong>Method     getMethod(String name, Class&lt;?&gt;… parameterTypes)</strong></p>
+<p>获取当前类中声明的所有方法，包含public和private以及其他修饰符的方法，但是不包含从父类中继承过来的方法</p>
+</li>
+<li><p><strong>Method[]     getDeclaredMethods()</strong></p>
+</li>
+<li><p><strong>Method     getDeclaredMethod(String name, Class&lt;?&gt;… parameterTypes)</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//包含方法名，方法的修饰符，参数个数，抛出异常</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	</span><br><span class="line">	Method[] methods = c.getMethods();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(Method m : methods) &#123;</span><br><span class="line">		System.out.println(m.getModifiers());</span><br><span class="line">		System.out.println(m.getReturnType().getSimpleName());</span><br><span class="line">		System.out.println(m.getName());</span><br><span class="line">		System.out.println(<span class="string">"方法参数个数："</span>+m.getParameterCount());</span><br><span class="line">		<span class="keyword">if</span>(m.getParameterCount()&gt;<span class="number">0</span>) &#123;</span><br><span class="line">			<span class="comment">//获取方法参数列表</span></span><br><span class="line">			Class[] paramArr = m.getParameterTypes();</span><br><span class="line">			String arr1 = java.util.Arrays.toString(paramArr);</span><br><span class="line">			System.out.println(<span class="string">"\t"</span>+arr1);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//获取方法抛出的异常类型</span></span><br><span class="line">		Class[] exceptionArr = m.getExceptionTypes();</span><br><span class="line">		System.out.println(<span class="string">"方法抛出异常类型为："</span>);</span><br><span class="line">		String arr2 = java.util.Arrays.toString(exceptionArr);</span><br><span class="line">		System.out.println(<span class="string">"\t"</span>+arr2);</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"-------------"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">         <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">             <span class="keyword">public</span> String name;</span><br><span class="line">             <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">  </span><br><span class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,String str)</span> </span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">             <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">                 <span class="keyword">return</span> <span class="string">"Hello!"</span> + name;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>  通过控制所传的参数，可以调用到java中任何一个类的对象中的任何方法</p>
+<p>  <strong>Object     invoke(Object obj, Object… args)</strong>，第一个参数表示要调用哪个对象中的方法（对象名），后面的参数表示方法中的参数</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public void test9() throws Exception&#123;</span><br><span class="line">	Class c &#x3D; Student.class;</span><br><span class="line">  </span><br><span class="line">	 Object stu &#x3D; new Student();</span><br><span class="line">	 </span><br><span class="line">	 String methodName &#x3D; &quot;test&quot;;  &#x2F;&#x2F;方法名</span><br><span class="line">	 </span><br><span class="line">	 Class[] paramList &#x3D; &#123;int.class&#125;;  &#x2F;&#x2F;参数列表</span><br><span class="line">	 </span><br><span class="line">	 Method m &#x3D; c.getMethod(methodName, paramList); &#x2F;&#x2F;接收test方法</span><br><span class="line">	 </span><br><span class="line">	 Object[] param &#x3D; &#123;1&#125;;  &#x2F;&#x2F;给方法参数列表传参</span><br><span class="line">	 &#x2F;&#x2F;如果方法没有返回值</span><br><span class="line">	 if(m.getReturnType().getSimpleName().equals(&quot;void&quot;)) &#123;</span><br><span class="line">		 &#x2F;&#x2F;invoke---调用方法，第一个参数表示要调用哪个对象中的方法，</span><br><span class="line">		 m.invoke(stu, param);</span><br><span class="line">	 &#125;else &#123;</span><br><span class="line">		 Object value &#x3D; m.invoke(stu, param);</span><br><span class="line">		 System.out.println(value);</span><br><span class="line">	 &#125;</span><br><span class="line">	 &#x2F;&#x2F;m.invoke(stu, param);</span><br><span class="line"></span><br><span class="line">&#125;	</span><br><span class="line">         class Student&#123;</span><br><span class="line">             public String name;</span><br><span class="line">             private int age;</span><br><span class="line">  </span><br><span class="line">             public void test() &#123;</span><br><span class="line">                 System.out.println(&quot;无参test方法被调用&quot;);</span><br><span class="line">             &#125;</span><br><span class="line">  </span><br><span class="line">             public void test(int a) &#123;</span><br><span class="line">                 System.out.println(&quot;test(int a)方法被调用&quot;);</span><br><span class="line">             &#125;</span><br><span class="line">  </span><br><span class="line">             public void test(int a,String str) &#123;&#125;</span><br><span class="line">  </span><br><span class="line">             public String sayHello(String name) &#123;</span><br><span class="line">                 return &quot;Hello!&quot; + name;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/5652141a.html" class="archive-article-date">
-  	<time datetime="2020-03-24T05:27:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/5652141a.html">java学习笔记Advance(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -224,368 +416,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://codezhouj.github.io/http://yoursite.com/posts/9bc9e249.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/f9638f78.html" class="archive-article-date">
-  	<time datetime="2020-03-19T06:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/posts/34f8792b.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java学习笔记Advance(十一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/f9638f78.html">java学习笔记Advance(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-number">1.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#普通代码和反射代码的区别"><span class="toc-number">1.1.</span> <span class="toc-text">普通代码和反射代码的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class类型的意义"><span class="toc-number">1.2.</span> <span class="toc-text">Class类型的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取一个类型对应的Class对象的几种方式"><span class="toc-number">1.3.</span> <span class="toc-text">获取一个类型对应的Class对象的几种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射机制中所提供的类"><span class="toc-number">1.4.</span> <span class="toc-text">反射机制中所提供的类</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/e7fcbb49.html" class="archive-article-date">
-  	<time datetime="2020-03-17T09:19:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/e7fcbb49.html">java学习笔记Basic(十四)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/1dbf5446.html" class="archive-article-date">
-  	<time datetime="2020-03-16T09:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/1dbf5446.html">java学习笔记Basic(十三)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/634c746d.html" class="archive-article-date">
-  	<time datetime="2020-03-12T06:19:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/634c746d.html">java学习笔记Basic(十二)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/315c9496.html" class="archive-article-date">
-  	<time datetime="2020-03-12T06:13:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/315c9496.html">Basic-构造器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/f7e4bfd9.html" class="archive-article-date">
-  	<time datetime="2020-03-11T00:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/f7e4bfd9.html">Basic-关于Java中的方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/cc7def0f.html" class="archive-article-date">
-  	<time datetime="2020-03-10T02:03:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/cc7def0f.html">java学习笔记Basic(十一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/ce35b7b3.html" class="archive-article-date">
-  	<time datetime="2020-03-06T03:50:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/ce35b7b3.html">回旋数字矩阵的实现</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/7fd93bb2.html" class="archive-article-date">
-  	<time datetime="2020-03-06T01:54:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/7fd93bb2.html">java学习笔记Basic(十)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/java/">&amp;laquo; Prev</a><a class="page-number" href="/tags/java/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/java/page/3/">3</a><a class="extend next" rel="next" href="/tags/java/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -609,9 +551,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
