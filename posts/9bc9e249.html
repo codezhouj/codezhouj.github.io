@@ -16,7 +16,7 @@
 <meta property="og:description" content="反射">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-04T09:25:05.000Z">
-<meta property="article:modified_time" content="2020-04-13T09:32:38.728Z">
+<meta property="article:modified_time" content="2020-04-13T09:36:19.873Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -238,9 +238,9 @@
 </li>
 </ul>
 <p>&nbsp;</p>
-<h2 id="Class类型的意义"><a href="#Class类型的意义" class="headerlink" title="Class类型的意义"></a>Class类型的意义</h2><p>注意区分class和Class的区别</p>
-<p>class是Java中的关键字，声明类的时候需要用到</p>
-<p>Class是JAVA-API中提供的一个类，这个类就是我们使用反射功能的入口。</p>
+<h2 id="Class类型的意义"><a href="#Class类型的意义" class="headerlink" title="Class类型的意义"></a>Class类型的意义</h2><p>注意区分<strong>class</strong>和<strong>Class</strong>的区别</p>
+<p><strong>class</strong>是Java中的关键字，声明类的时候需要用到</p>
+<p><strong>Class</strong>是JAVA-API中提供的一个类，这个类就是我们使用反射功能的入口。</p>
 <p>Java中的每一个类都是对指定事物的抽象，这个类型就代表了这一类的事物。</p>
 <p>比如：<strong>学生—抽象—》Student</strong></p>
 <p>​    Student类就是对学生的抽象性概括，描述了学生应该具备什么属性和方法。</p>
@@ -250,13 +250,25 @@
 <ul>
 <li><p>使用Class对象表示基本类型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;		</span><br><span class="line">	Class c = <span class="keyword">int</span><span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//判断对象c所代表的类型是否是基本类型</span></span><br><span class="line">	System.out.println(c.isPrimitive());</span><br><span class="line">	<span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">	System.out.println(c.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ul>
+<ul>
 <li><p>使用Class对象表示类类型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test21</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//这个对象c代表Student类型</span></span><br><span class="line">	Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//判断对象c所代表的类型是否是内部类</span></span><br><span class="line">	System.out.println(c.isMemberClass());</span><br><span class="line">	<span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">	System.out.println(c.getName());</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ul>
+<ul>
 <li><p>使用Class对象表示接口类型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//这个对象c代表接口类型</span></span><br><span class="line">	Class c = Action<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">//判断对象c所代表的类型是否是接口类</span></span><br><span class="line">	System.out.println(c.isInterface());</span><br><span class="line">	<span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">	System.out.println(c.getName());</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ul>
+<ul>
 <li><p>使用Class对象表示数组类型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">    Class c = <span class="keyword">int</span>[]<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    <span class="comment">//判断对象c所代表的类型是是数组类型</span></span><br><span class="line">    System.out.println(c.isArray());</span><br><span class="line">    <span class="comment">//获取对象c所代表的类型名</span></span><br><span class="line">    System.out.println(c.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -276,11 +288,19 @@
 <li><p>直接使用类名.class来获取</p>
 <p>类，接口，数组，基本类型可以使用这种方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class c = Student<span class="class">.<span class="keyword">class</span></span>;</span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ul>
+<ul>
 <li><p>使用这个类的对象来获取</p>
 <p>类，数组类型可以使用这种方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Student stu = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">Class c = stu.getClass();</span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ul>
+<ul>
 <li><p>使用Class中的静态方法<strong>forName</strong>获取</p>
 <p>类，接口类型可以使用这种方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String className = <span class="string">"com.zj.test.Student"</span>;</span><br><span class="line"></span><br><span class="line">Class c = Class.forName(className);</span><br></pre></td></tr></table></figure>
@@ -480,6 +500,15 @@
   
 <nav id="article-nav">
   
+    <a href="/posts/e53ac262.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java学习笔记Advance(十三)
+        
+      </div>
+    </a>
+  
   
     <a href="/posts/34f8792b.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">java学习笔记Advance(十一)</div>
@@ -621,15 +650,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">

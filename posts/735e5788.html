@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>排序算法 | Hexo</title>
+  <title>排序 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="排序算法（java和c语言）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="排序算法">
+<meta property="og:title" content="排序">
 <meta property="og:url" content="http://yoursite.com/posts/735e5788.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="排序算法（java和c语言）">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/quickSort.gif">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/heapSort.gif">
 <meta property="article:published_time" content="2020-03-07T15:48:16.000Z">
-<meta property="article:modified_time" content="2020-04-12T02:07:26.351Z">
+<meta property="article:modified_time" content="2020-04-27T04:13:44.983Z">
 <meta property="article:author" content="zhoujin">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="算法">
@@ -201,7 +201,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      排序算法
+      排序
     </h1>
   
 
@@ -227,8 +227,6 @@
 <p>冒泡排序的优化：</p>
 <p>如果在某一趟冒泡过程中，没有发生记录值的交换，则说明待排序列已经有序，就不用再进行接下来的排序，可以提前结束排序。故我们可以在每趟冒泡排序前设置一个exchange，初值为0，只要在该趟排序有记录交换，exchange就会大于零。这样就可以通过exchange的值判断是否有记录的交换，从而判断整个冒泡排序是否结束。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;time.h&gt; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> * a,<span class="keyword">int</span> * b)</span></span>&#123; </span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	tmp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		printf(<span class="string">"%d "</span>,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> exchange = len-<span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(exchange!=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> bound = exchange;   <span class="comment">//第一趟冒泡排序的区间为【0，len-1】 </span></span><br><span class="line">		exchange = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;bound;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[i]&gt;a[i+<span class="number">1</span>])&#123;</span><br><span class="line">				swap(&amp;a[i],&amp;a[i+<span class="number">1</span>]);</span><br><span class="line">				exchange = i;   <span class="comment">//记录每一次交换的位置 </span></span><br><span class="line">			&#125;				</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	srand((unsigned)time(NULL));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">		num[i] = rand()%<span class="number">101</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(<span class="string">"排序前记录："</span>); </span><br><span class="line">	print(num,<span class="number">10</span>);</span><br><span class="line">	printf(<span class="string">"排序后记录："</span>);</span><br><span class="line">	bubbleSort(num,<span class="number">10</span>);</span><br><span class="line">	print(num,<span class="number">10</span>); </span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
 <p>&nbsp;</p>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。 以此类推，直到全部待排序的数据元素的个数为零。 </p>
@@ -497,15 +495,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
